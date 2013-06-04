@@ -1,0 +1,9 @@
+<aspectj>
+<aspects>
+<aspect name="com.webhunter.domain.UserProfileDataOnDemand_Roo_Configurable"/>
+<aspect name="com.webhunter.domain.UserProfileDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="com.webhunter.domain.UserProfileIntegrationTest_Roo_Configurable"/>
+<aspect name="com.webhunter.domain.UserProfileIntegrationTest_Roo_IntegrationTest"/>
+</aspects>
+</aspectj>
+

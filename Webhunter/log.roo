@@ -1,0 +1,25 @@
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-06-01 13:09:27
+project --topLevelPackage com.webhunter --projectName Webhunter --java 7 --packaging JAR
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-06-01 13:09:38
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-06-01 13:12:48
+jpa setup --database MYSQL --provider HIBERNATE 
+entity jpa --class ~.domain.UserProfile --testAutomatically 
+field string --fieldName userName --notNull --sizeMin 8
+field string --fieldName password --notNull --sizeMin 8
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-06-01 19:40:10
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-06-03 10:49:01
+web mvc setup
+web mvc all --package ~.web
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-06-03 10:54:13
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-06-03 11:01:04
+web mvc all --package ~.web
+help
+controller class --class ~web.PublicUserProfileController
+// [failed] finder list --class ~.domain.UserProfile
+finder list --class ~.domain.UserProfile --depth 3
+finder list --class ~.domain.UserProfile --depth 2
+logging setup --package WEB --level DEBUG
+security setup
+jpa setup --database MYSQL --provider HIBERNATE --jndiDataSource jdbc/webhunter_dev
+entity jpa --class ~.domain.UserRole 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-06-03 17:04:33
