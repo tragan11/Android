@@ -4,6 +4,7 @@
 package com.webhunter.web;
 
 import com.webhunter.domain.UserProfile;
+import com.webhunter.domain.UserRole;
 import com.webhunter.web.UserProfileController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -86,6 +87,7 @@ privileged aspect UserProfileController_Roo_Controller {
     
     void UserProfileController.populateEditForm(Model uiModel, UserProfile userProfile) {
         uiModel.addAttribute("userProfile", userProfile);
+        uiModel.addAttribute("userroles", UserRole.findAllUserRoles());
     }
     
     String UserProfileController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

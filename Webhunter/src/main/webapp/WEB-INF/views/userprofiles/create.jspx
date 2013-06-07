@@ -6,6 +6,7 @@
         <field:input field="userName" id="c_com_webhunter_domain_UserProfile_userName" min="8" required="true" z="CG6y8iTPXPj4SG6PB0awdala8ds="/>
         <field:input field="password" id="c_com_webhunter_domain_UserProfile_password" min="8" required="true" z="87xeWYg/wxfuMjTMTVDJw2arSus="/>
         <field:input field="confirmPassword" id="c_com_webhunter_domain_UserProfile_confirmPassword" min="8" required="true" z="fxs9jJphK+KKOxRqyaRm93Bi8jk="/>
+        <field:simple field="roles" id="c_com_webhunter_domain_UserProfile_roles" messageCode="entity_reference_not_managed" messageCodeAttribute="User Role" z="o/NGWccRcyMiYJSBprncxj2soz8="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_webhunter_domain_UserProfile" render="${not empty dependencies}" z="nV0jpyGPKA7IOl6cex0tt5SNbek="/>
 </div>

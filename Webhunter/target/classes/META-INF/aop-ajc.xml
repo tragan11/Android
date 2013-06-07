@@ -1,11 +1,14 @@
 <aspectj>
 <aspects>
 <aspect name="com.webhunter.domain.UserProfile_Roo_ToString"/>
-<aspect name="com.webhunter.domain.UserRole_Roo_ToString"/>
-<aspect name="com.webhunter.domain.UserProfile_Roo_Configurable"/>
 <aspect name="com.webhunter.web.UserProfileController_Roo_Controller"/>
+<aspect name="com.webhunter.domain.UserProfile_Roo_Configurable"/>
+<aspect name="com.webhunter.service.UserProfileService_Roo_Service"/>
+<aspect name="com.webhunter.domain.UserRole_Roo_ToString"/>
 <aspect name="com.webhunter.domain.UserRole_Roo_Jpa_ActiveRecord"/>
+<aspect name="com.webhunter.domain.UserRole_Roo_JavaBean"/>
 <aspect name="com.webhunter.domain.UserProfile_Roo_Jpa_ActiveRecord"/>
+<aspect name="com.webhunter.service.UserProfileServiceImpl_Roo_Service"/>
 <aspect name="com.webhunter.domain.UserRole_Roo_Jpa_Entity"/>
 <aspect name="com.webhunter.domain.UserProfile_Roo_JavaBean"/>
 <aspect name="com.webhunter.web.ApplicationConversionServiceFactoryBean_Roo_ConversionService"/>

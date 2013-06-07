@@ -23,3 +23,23 @@ security setup
 jpa setup --database MYSQL --provider HIBERNATE --jndiDataSource jdbc/webhunter_dev
 entity jpa --class ~.domain.UserRole 
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-06-03 17:04:33
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-06-04 14:24:47
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-06-04 17:09:07
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-06-06 13:06:33
+logging setup --level DEBUG 
+// [failed] focus --class ~domail.UserProfile
+// [failed] field set --fieldName roles --type ~domain.UserRole --cardinality ONE_TO_MANY --mappedBy profile
+focus --class ~domain.UserProfile
+field set --fieldName roles --type ~domain.UserRole --cardinality ONE_TO_MANY --mappedBy profile
+focus --class ~domain.UserRole
+field reference --fieldName profile --type ~domain.UserProfile --cardinality MANY_TO_ONE 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-06-06 17:11:09
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-06-07 10:49:33
+focus --class ~domain.UserProfile
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-06-07 10:50:03
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-06-07 10:51:59
+focus --class ~.domain.UserProfile
+hint
+hint
+service --entity ~.domain.UserProfile --interface ~.service.UserProfileService

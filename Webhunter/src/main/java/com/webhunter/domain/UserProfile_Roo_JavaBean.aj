@@ -4,6 +4,8 @@
 package com.webhunter.domain;
 
 import com.webhunter.domain.UserProfile;
+import com.webhunter.domain.UserRole;
+import java.util.Set;
 
 privileged aspect UserProfile_Roo_JavaBean {
     
@@ -29,6 +31,14 @@ privileged aspect UserProfile_Roo_JavaBean {
     
     public void UserProfile.setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+    
+    public Set<UserRole> UserProfile.getRoles() {
+        return this.roles;
+    }
+    
+    public void UserProfile.setRoles(Set<UserRole> roles) {
+        this.roles = roles;
     }
     
 }

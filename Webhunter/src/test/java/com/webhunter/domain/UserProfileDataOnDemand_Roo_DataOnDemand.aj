@@ -5,6 +5,7 @@ package com.webhunter.domain;
 
 import com.webhunter.domain.UserProfile;
 import com.webhunter.domain.UserProfileDataOnDemand;
+import com.webhunter.service.UserProfileService;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect UserProfileDataOnDemand_Roo_DataOnDemand {
@@ -21,6 +23,9 @@ privileged aspect UserProfileDataOnDemand_Roo_DataOnDemand {
     private Random UserProfileDataOnDemand.rnd = new SecureRandom();
     
     private List<UserProfile> UserProfileDataOnDemand.data;
+    
+    @Autowired
+    UserProfileService UserProfileDataOnDemand.userProfileService;
     
     public UserProfile UserProfileDataOnDemand.getNewTransientUserProfile(int index) {
         UserProfile obj = new UserProfile();
@@ -49,14 +54,14 @@ privileged aspect UserProfileDataOnDemand_Roo_DataOnDemand {
         }
         UserProfile obj = data.get(index);
         Long id = obj.getId();
-        return UserProfile.findUserProfile(id);
+        return userProfileService.findUserProfile(id);
     }
     
     public UserProfile UserProfileDataOnDemand.getRandomUserProfile() {
         init();
         UserProfile obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return UserProfile.findUserProfile(id);
+        return userProfileService.findUserProfile(id);
     }
     
     public boolean UserProfileDataOnDemand.modifyUserProfile(UserProfile obj) {
@@ -66,7 +71,7 @@ privileged aspect UserProfileDataOnDemand_Roo_DataOnDemand {
     public void UserProfileDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = UserProfile.findUserProfileEntries(from, to);
+        data = userProfileService.findUserProfileEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'UserProfile' illegally returned null");
         }
@@ -78,7 +83,7 @@ privileged aspect UserProfileDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             UserProfile obj = getNewTransientUserProfile(i);
             try {
-                obj.persist();
+                userProfileService.saveUserProfile(obj);
             } catch (ConstraintViolationException e) {
                 StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
