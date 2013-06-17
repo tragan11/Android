@@ -14,6 +14,7 @@
   <definition name="public" template="/WEB-INF/layouts/public/default.jspx">
     <put-attribute name="header" value="/WEB-INF/views/public/header.jspx" />
     <put-attribute name="footer" value="/WEB-INF/views/public/footer.jspx" />
+     <put-attribute name="menu" value="/WEB-INF/views/public/menu.jspx" />
   </definition>
 
 </tiles-definitions>

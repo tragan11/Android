@@ -8,4 +8,5 @@
   <a href="${home}" name="${fn:escapeXml(home_label)}" title="${fn:escapeXml(home_label)}">
     <img src="${banner}" />
   </a>
+  <h3>This is public</h3>
 </div> 

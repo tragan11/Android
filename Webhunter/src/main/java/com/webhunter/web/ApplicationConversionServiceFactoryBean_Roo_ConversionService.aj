@@ -4,7 +4,9 @@
 package com.webhunter.web;
 
 import com.webhunter.domain.UserProfile;
+import com.webhunter.service.UserProfileService;
 import com.webhunter.web.ApplicationConversionServiceFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
@@ -12,6 +14,9 @@ import org.springframework.format.FormatterRegistry;
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
+    
+    @Autowired
+    UserProfileService ApplicationConversionServiceFactoryBean.userProfileService;
     
     public Converter<UserProfile, String> ApplicationConversionServiceFactoryBean.getUserProfileToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.webhunter.domain.UserProfile, java.lang.String>() {
@@ -24,7 +29,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, UserProfile> ApplicationConversionServiceFactoryBean.getIdToUserProfileConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.webhunter.domain.UserProfile>() {
             public com.webhunter.domain.UserProfile convert(java.lang.Long id) {
-                return UserProfile.findUserProfile(id);
+                return userProfileService.findUserProfile(id);
             }
         };
     }

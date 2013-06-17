@@ -5,10 +5,12 @@ package com.webhunter.web;
 
 import com.webhunter.domain.UserProfile;
 import com.webhunter.domain.UserRole;
+import com.webhunter.service.UserProfileService;
 import com.webhunter.web.UserProfileController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,9 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect UserProfileController_Roo_Controller {
     
+    @Autowired
+    UserProfileService UserProfileController.userProfileService;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String UserProfileController.create(@Valid UserProfile userProfile, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -27,7 +32,7 @@ privileged aspect UserProfileController_Roo_Controller {
             return "userprofiles/create";
         }
         uiModel.asMap().clear();
-        userProfile.persist();
+        userProfileService.saveUserProfile(userProfile);
         return "redirect:/userprofiles/" + encodeUrlPathSegment(userProfile.getId().toString(), httpServletRequest);
     }
     
@@ -39,7 +44,7 @@ privileged aspect UserProfileController_Roo_Controller {
     
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String UserProfileController.show(@PathVariable("id") Long id, Model uiModel) {
-        uiModel.addAttribute("userprofile", UserProfile.findUserProfile(id));
+        uiModel.addAttribute("userprofile", userProfileService.findUserProfile(id));
         uiModel.addAttribute("itemId", id);
         return "userprofiles/show";
     }
@@ -49,11 +54,11 @@ privileged aspect UserProfileController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("userprofiles", UserProfile.findUserProfileEntries(firstResult, sizeNo));
-            float nrOfPages = (float) UserProfile.countUserProfiles() / sizeNo;
+            uiModel.addAttribute("userprofiles", userProfileService.findUserProfileEntries(firstResult, sizeNo));
+            float nrOfPages = (float) userProfileService.countAllUserProfiles() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("userprofiles", UserProfile.findAllUserProfiles());
+            uiModel.addAttribute("userprofiles", userProfileService.findAllUserProfiles());
         }
         return "userprofiles/list";
     }
@@ -65,20 +70,20 @@ privileged aspect UserProfileController_Roo_Controller {
             return "userprofiles/update";
         }
         uiModel.asMap().clear();
-        userProfile.merge();
+        userProfileService.updateUserProfile(userProfile);
         return "redirect:/userprofiles/" + encodeUrlPathSegment(userProfile.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String UserProfileController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, UserProfile.findUserProfile(id));
+        populateEditForm(uiModel, userProfileService.findUserProfile(id));
         return "userprofiles/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String UserProfileController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        UserProfile userProfile = UserProfile.findUserProfile(id);
-        userProfile.remove();
+        UserProfile userProfile = userProfileService.findUserProfile(id);
+        userProfileService.deleteUserProfile(userProfile);
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());

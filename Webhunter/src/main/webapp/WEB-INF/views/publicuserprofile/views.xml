@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-    <definition extends="default" name="publicuserprofile/index">
+    <definition extends="public" name="publicuserprofile/index">
         <put-attribute name="body" value="/WEB-INF/views/publicuserprofile/index.jspx"/>
+    </definition>
+     <definition extends="public" name="publicuserprofile/create">
+        <put-attribute name="body" value="/WEB-INF/views/publicuserprofile/create.jspx"/>
+    </definition>
+<definition extends="public" name="publicuserprofile/list">
+        <put-attribute name="body" value="/WEB-INF/views/publicuserprofile/list.jspx"/>
+    </definition>
+<definition extends="public" name="publicuserprofile/show">
+        <put-attribute name="body" value="/WEB-INF/views/publicuserprofile/show.jspx"/>
+    </definition>
+<definition extends="public" name="publicuserprofile/update">
+        <put-attribute name="body" value="/WEB-INF/views/publicuserprofile/update.jspx"/>
     </definition>
 </tiles-definitions>
