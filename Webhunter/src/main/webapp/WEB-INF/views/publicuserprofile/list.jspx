@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_webhunter_domain_UserProfile" items="${userprofiles}" z="wxEHnCOmxhMcBs64aQA0L5plJjU=">
+        <table:table data="${userprofiles}" id="l_com_webhunter_domain_UserProfile" path="/publicuserprofile" z="IxF6D9mG43o1hiK6cw7t8FjmOpY=">
+            <table:column id="c_com_webhunter_domain_UserProfile_userName" property="userName" z="j7qiIqll+aNIKtFH8GRSfMHXl6g="/>
+            <table:column id="c_com_webhunter_domain_UserProfile_password" property="password" z="KZQvwmdcXz5FnVMmpszfrfI3mq4="/>
+            <table:column id="c_com_webhunter_domain_UserProfile_confirmPassword" property="confirmPassword" z="7FpXAnpbfF3/CfseZodetYgtrgQ="/>
+        </table:table>
+    </page:list>
+</div>
